@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import ReactGoogleMapLoader from "react-google-maps-loader"
 import ReactGooglePlacesSuggest from "react-google-places-suggest"
+import axios from "axios"
 
 const API_KEY = process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
 class GoogleSuggest extends React.Component {
@@ -14,9 +15,16 @@ class GoogleSuggest extends React.Component {
         this.setState({search: e.target.value, value: e.target.value})
     }
 
-    handleSelectSuggest(suggest) {
-        console.log(suggest.geometry.location.lat())
-        console.log(suggest.geometry.location.lng())
+    async handleSelectSuggest(suggest) {
+        var lat = suggest.geometry.location.lat();
+        var long= suggest.geometry.location.lng();
+
+        let res = await axios.get(
+            // url
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
+        );
+        // api.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=10
+        console.log(res.data)
 
         this.setState({search: "", value: suggest.formatted_address})
     }
