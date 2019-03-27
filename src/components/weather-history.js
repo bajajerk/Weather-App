@@ -26,7 +26,7 @@ class App extends React.Component {
         {
             var date = moment().subtract(i, 'days').format("YYYY-MM-DD").toString()
             let resp = await axios.get(
-                `http://api.apixu.com/v1/history.json?key=${process.env.REACT_APP_APIXU_WEATHER_API_KEY}&q=${this.props.latitude},${this.props.longitude}&dt=${date}`
+                `https://api.apixu.com/v1/history.json?key=${process.env.REACT_APP_APIXU_WEATHER_API_KEY}&q=${this.props.latitude},${this.props.longitude}&dt=${date}`
             );
             var weather_report = {};
             // console.log(resp.data.forecast.forecastday[0].day)
