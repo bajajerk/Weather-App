@@ -11,7 +11,8 @@
     "react-dom": "^16.8.5",
     "react-google-maps-loader": "^4.2.5",
     "react-google-places-suggest": "^3.6.1",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "recharts": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
