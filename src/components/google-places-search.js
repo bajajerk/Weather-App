@@ -22,13 +22,10 @@ class GoogleSuggest extends React.Component {
 
         let res = await axios.get(
             // url
-            // `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
             `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
 
         );
-        var resp = res.data.list
         this.setState({search: "", value: suggest.formatted_address});
-
         this.props.getForecastWeather(res.data.list,lat,long);
     }
 

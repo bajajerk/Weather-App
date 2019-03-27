@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import GoogleSuggest from "./components/google-places-search";
 import ForeCast from "./components/forecast"
@@ -27,7 +26,7 @@ class App extends React.Component {
         await this.setState(
             {weather_report: filteredWeatherReport, latitude: latitude, longitude:longitude,
                 displayHistoricWeather: false});
-        console.log("HI",this.state.weather_report)
+        // console.log("HI",this.state.weather_report)
     };
 
     showWeatherHistory = async () => {
