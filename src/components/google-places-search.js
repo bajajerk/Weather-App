@@ -9,6 +9,7 @@ class GoogleSuggest extends React.Component {
     state = {
         search: "",
         value: "",
+        temperature_array: null
     }
 
     handleInputChange(e) {
@@ -21,12 +22,19 @@ class GoogleSuggest extends React.Component {
 
         let res = await axios.get(
             // url
+            // `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
             `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
-        );
-        // api.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=10
-        console.log(res.data)
 
-        this.setState({search: "", value: suggest.formatted_address})
+        );
+        var resp = res.data.list
+        resp.forEach(function (report) {
+            var d = new Date(report.dt * 1000);
+            var temp = report.main.temp-273.15;
+            console.log(d, temp)
+        });
+        this.setState({search: "", value: suggest.formatted_address});
+
+        this.props.getForecastWeather(res.data.list);
     }
 
     render() {
@@ -52,6 +60,9 @@ class GoogleSuggest extends React.Component {
                                     onChange={this.handleInputChange.bind(this)}
                                 />
                             </ReactGooglePlacesSuggest>
+                            <div>
+
+                            </div>
                         </div>
                     )
                 }
