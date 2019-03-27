@@ -4,6 +4,7 @@ import './App.css';
 import GoogleSuggest from "./components/google-places-search";
 import ForeCast from "./components/forecast"
 import WeatherHistory from "./components/weather-history"
+import moment from "moment"
 
 class App extends React.Component {
     constructor(props) {
@@ -19,8 +20,14 @@ class App extends React.Component {
         this.showWeatherHistory = this.showWeatherHistory.bind(this);
     }
     getForecastWeather = async (weather_report,latitude,longitude) => {
+
+        const filteredWeatherReport = weather_report.filter((report) =>
+            moment(new Date(report.dt * 1000)).format("hh:mm:ss a") === '08:30:00 am'
+        );
         await this.setState(
-            {weather_report: weather_report, latitude: latitude, longitude:longitude});
+            {weather_report: filteredWeatherReport, latitude: latitude, longitude:longitude,
+                displayHistoricWeather: false});
+        console.log("HI",this.state.weather_report)
     };
 
     showWeatherHistory = async () => {

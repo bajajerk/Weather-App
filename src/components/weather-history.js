@@ -22,7 +22,7 @@ class App extends React.Component {
 
     async componentDidMount() {
         var weather_history = [];
-        for(var i = 1;i<8;i++)
+        for(var i = 1;i<9;i++)
         {
             var date = moment().subtract(i, 'days').format("YYYY-MM-DD").toString()
             let resp = await axios.get(
@@ -56,6 +56,7 @@ class App extends React.Component {
                         <Legend />
                         <Line type="monotone" dataKey="avgtemp_c" stroke="#8884d8" />
                         <Line type="monotone" dataKey="avghumidity" stroke="#82ca9d" />
+                        <Line type="monotone" dataKey="totalprecip_mm" stroke="#F08080" />
                     </LineChart>
                 }
             </div>

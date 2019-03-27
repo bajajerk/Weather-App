@@ -38,7 +38,7 @@ class App extends React.Component {
                                 <TableRow>
                                     <TableCell>Date</TableCell>
                                     <TableCell align="right">Temperature</TableCell>
-                                    <TableCell align="right">Pressure (g)</TableCell>
+                                    <TableCell align="right">Pressure</TableCell>
                                     <TableCell align="right">Humidity</TableCell>
                                     <TableCell align="right">Weather</TableCell>
                                 </TableRow>
@@ -50,7 +50,7 @@ class App extends React.Component {
                                         <TableCell component="th" scope="row">
                                             {new Date(row.dt * 1000).toString()}
                                         </TableCell>
-                                        <TableCell align="right">{row.main.temp-273.15}</TableCell>
+                                        <TableCell align="right">{(row.main.temp-273.15).toString().slice(0, 5)}</TableCell>
                                         <TableCell align="right">{row.main.pressure}</TableCell>
                                         <TableCell align="right">{row.main.humidity}</TableCell>
                                         <TableCell align="right">{row.weather[0]['description']}</TableCell>
