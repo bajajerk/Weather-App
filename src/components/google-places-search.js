@@ -27,14 +27,9 @@ class GoogleSuggest extends React.Component {
 
         );
         var resp = res.data.list
-        resp.forEach(function (report) {
-            var d = new Date(report.dt * 1000);
-            var temp = report.main.temp-273.15;
-            console.log(d, temp)
-        });
         this.setState({search: "", value: suggest.formatted_address});
 
-        this.props.getForecastWeather(res.data.list);
+        this.props.getForecastWeather(res.data.list,lat,long);
     }
 
     render() {
