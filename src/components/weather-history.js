@@ -22,7 +22,7 @@ class App extends React.Component {
 
     async componentDidMount() {
         var weather_history = [];
-        for(var i = 1;i<9;i++)
+        for(var i = 1;i<5;i++)
         {
             var date = moment().subtract(i, 'days').format("YYYY-MM-DD").toString()
             let resp = await axios.get(
